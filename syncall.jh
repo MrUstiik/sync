@@ -1,0 +1,68 @@
+application {
+  config {
+    baseName sync
+    applicationType microservice
+    buildTool gradle
+    reactive false
+
+    authenticationType jwt
+    databaseType sql
+    prodDatabaseType postgresql
+    devDatabaseType h2Memory
+    enableHibernateCache false
+    cacheProvider no
+    serviceDiscoveryType no
+
+    enableSwaggerCodegen true
+  }
+  entities *
+}
+ 
+/**
+ * comment 1
+ */
+entity Category {
+  uuid UUID required unique
+  name String required
+  mcc String minlength(4) maxlength(4)
+  parentCategoryId UUID
+  enabled Boolean
+  iconUrl String  
+  defaultOrderId Integer
+  addedDate ZonedDateTime
+  updatedDate ZonedDateTime
+  regions String
+  tags String
+}
+
+
+enum ActionType {
+  BILLPAY
+}
+
+/** comment 3 */
+@filter
+entity CategoryAction(action) {
+  uuid UUID required unique
+  name String required
+  mcc String minlength(4) maxlength(4)
+  categoryId UUID
+  enabled Boolean
+  iconUrl String  
+  defaultOrderId Integer
+  addedDate ZonedDateTime
+  updatedDate ZonedDateTime
+  regions String
+  tags String
+  processId String
+  source String
+  actionType ActionType
+}
+
+relationship ManyToOne {
+  CategoryAction{categoryId} to Category
+}
+
+service Category with serviceImpl
+service CategoryAction with serviceClass
+dto CategoryAction with mapstruct

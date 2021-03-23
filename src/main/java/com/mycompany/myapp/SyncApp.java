@@ -100,5 +100,15 @@ public class SyncApp {
             contextPath,
             env.getActiveProfiles()
         );
+
+        String configServerStatus = env.getProperty("configserver.status");
+        if (configServerStatus == null) {
+            configServerStatus = "Not found or not setup for this application";
+        }
+        log.info(
+            "\n----------------------------------------------------------\n\t" +
+            "Config Server: \t{}\n----------------------------------------------------------",
+            configServerStatus
+        );
     }
 }

@@ -1,11 +1,11 @@
 version: '2'
 services:
-  sync-postgresql:
+  jhipster-postgresql:
     image: postgres:12.3
     # volumes:
-    #     - ~/volumes/jhipster/sync/postgresql/:/var/lib/postgresql/data/
+    #     - ~/volumes/jhipster/jhipster/postgresql/:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=sync
+      - POSTGRES_USER=jhipster
       - POSTGRES_PASSWORD=
       - POSTGRES_HOST_AUTH_METHOD=trust
     ports:

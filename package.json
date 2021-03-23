@@ -1,7 +1,7 @@
 {
-  "name": "sync",
+  "name": "jhipster",
   "version": "0.0.0",
-  "description": "Description for sync",
+  "description": "Description for jhipster",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [
